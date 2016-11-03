@@ -9,6 +9,7 @@ import datosClientes.Cliente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +31,11 @@ public class ClienteServlet extends HttpServlet {
             case "alta": alta(request);break;
             case "baja": baja(request);break;
             case "modif": modificar(request);break;
-        }       
+            case "lista":listar(request,response);break;
+        }
+        RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/mantenimientoCliente.jsp");
+        rd.forward(request, response);
+        
     }
     
     public void alta(HttpServletRequest request) {
@@ -54,32 +59,40 @@ public class ClienteServlet extends HttpServlet {
     
     public void baja(HttpServletRequest request) {
         String dniElim = request.getParameter("dniElim");
-        Cliente clienteElim;
-        clienteElim = buscar(dniElim);
-        if(clienteElim!=null){
-            request.setAttribute("clienteAEliminar", clienteElim);
+        int posClienteElim;
+        posClienteElim = buscar(dniElim);
+        if(posClienteElim!=-1){
+            clientes.remove(posClienteElim);
         }
     }
     
     public void modificar(HttpServletRequest request) {
         String dniModif = request.getParameter("dniModif");
-        Cliente clienteModif;
-        clienteModif = buscar(dniModif);
-        if(clienteModif!=null){
-            request.setAttribute("clienteAEliminar", clienteModif);
+        int posClientModif;
+        posClientModif = buscar(dniModif);
+        if(posClientModif!=-1){
+            //falta añadir codigo
         }
     }
     
-    public Cliente buscar(String dni){
-        Cliente clienteBuscado = null;
+    public void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String lista="hola";
+        request.setAttribute("listaClientes",clientes);
+        request.setAttribute("lista", lista);
+        RequestDispatcher rd = this.getServletContext().getRequestDispatcher("/listarClientes.jsp");
+        rd.forward(request, response);
+    }
+    
+        
+    public int buscar(String dni){
+        int posClienteBuscado=-1;
         int i=0;
-        while(i<=clientes.size() && clienteBuscado == null){
+        while(i<=clientes.size() && posClienteBuscado==-1){
             if(clientes.get(i).getDni().equals(dni)){
-                clienteBuscado = clientes.get(i);
+                posClienteBuscado=i;
             }
         }
-        
-        return clienteBuscado;
+        return posClienteBuscado;
     }
     
 
@@ -121,6 +134,10 @@ public class ClienteServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private void listar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     
 

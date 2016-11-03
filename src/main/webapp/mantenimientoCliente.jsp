@@ -6,8 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<jsp:useBean id="cliente" scope="request" class="datosClientes.Cliente" />
-
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,8 +17,9 @@
     <body>
         <h2>Mantenimiento Clientes</h2>
         <a href="/proyectoDWS/altaCliente.jsp" class="boton">Alta Cliente</a><br>
-        <a href="/bajaCliente" class="boton">Baja Cliente</a><br>
-        <a href="/modifCliente" class="boton">Modificar Datos Cliente</a><br>
+        <a href="/proyectoDWS/bajaCliente.jsp" class="boton">Baja Cliente</a><br>
+        <a href="/proyectoDWS/modifCliente.jsp" class="boton">Modificar Datos Cliente</a><br>
+        <a href="/proyectoDWS/listarClientes.jsp" class="boton">Listar Datos Cliente</a><br>
     </body>
     
 </html>

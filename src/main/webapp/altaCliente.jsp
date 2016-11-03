@@ -57,6 +57,11 @@
                     <td>Correo electrónico:</td>
                     <td><input type="text" name="email" value="" size="20" ></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Enviar Consulta" >&nbsp<input type="reset" value="Restablecer" >
+                    </td>
+                </tr>
             </table>
         </form>    
     </body>

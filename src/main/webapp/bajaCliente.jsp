@@ -15,6 +15,8 @@
         Introduce el DNI del Cliente a eliminar<br>
         <form name="formBajaCliente" action="ClienteServlet"  method="POST" >
             <input type="hidden" name="consulta" value="baja">
-            <input type="text" name="dniElim" 
+            <input type="text" name="dniElim" >
+            <input type="submit" value="Enviar" >&nbsp<input type="reset" value="Restablecer" >
+        </form>    
     </body>
 </html>
